@@ -32,6 +32,7 @@ This project uses a structured 4-phase iterative development workflow. Every ite
 | System architecture | `docs/architecture/ARCHITECTURE.md` | Design and implementation phases |
 | Product requirements | `docs/prd/PRD.md` | Requirements phase |
 | Current iteration tasks | `docs/iterations/<phase>/iter-NNN/TASKS.md` | Implementation phase |
+| Document sync rules | `docs/workflow/SYNC.md` | Design and merge phases — which files to update when |
 
 ### Iteration Workflow Phases
 
@@ -63,6 +64,7 @@ MERGE         →  CHANGELOG.md, merge to main, tag version, update STATUS.md
 - Read PRD.md to understand existing feature registry and product scope
 - Produce `REQUIREMENTS.md` using the template in `templates/REQUIREMENTS.tpl.md`
 - Sections: Context, Goals, Non-Goals, User Stories, Functional Requirements, Acceptance Criteria, Test Scenarios
+- Sync: update `PRD.md` (feature status → In Progress); update `STATUS.md` current iteration block
 
 **DESIGN** — Decide *how* to build before building.
 - Read the current `REQUIREMENTS.md`
@@ -70,18 +72,21 @@ MERGE         →  CHANGELOG.md, merge to main, tag version, update STATUS.md
 - Produce `docs/design/d-NNN-<slug>.md` using `templates/DESIGN.tpl.md`
 - Update `ARCHITECTURE.md` and relevant module files to reflect planned changes
 - Sections: Goals, New Files, Modified Files, key implementation details, open questions
+- Sync: update `ARCHITECTURE.md` — add ADR row, update module map if new packages added, update datestamp
 
 **TASKS** — Break the design into atomic, testable units.
 - Each task should be independently completable in one sitting
 - Every task must have explicit acceptance criteria (not "implement X" but "X does Y when Z")
 - Include test scenarios table: scenario → what to verify
 - Use the template in `templates/TASKS.tpl.md`
+- Sync: copy T0–TN task list into `STATUS.md` task checklist
 
 **IMPLEMENTATION** — Build and test with full autonomy.
 - Read `TASKS.md` and the relevant design doc
 - Load only source files needed for the active task
 - Mark tasks complete in `TASKS.md` as you finish them
 - Update `STATUS.md` at the end of the session
+- Sync: check off each task in `STATUS.md` as completed; save non-obvious patterns to memory
 
 **MERGE** — Ship it.
 - Verify all tasks complete, tests pass, lint clean
@@ -89,6 +94,7 @@ MERGE         →  CHANGELOG.md, merge to main, tag version, update STATUS.md
 - Merge to main with `--no-ff`
 - Tag the version
 - Update `STATUS.md`
+- Sync: `PRD.md` features → Shipped + version tag; `ARCHITECTURE.md` datestamp; memory session summary
 
 ---
 
@@ -96,12 +102,15 @@ MERGE         →  CHANGELOG.md, merge to main, tag version, update STATUS.md
 
 **At session start:**
 1. Read `STATUS.md` — locate current phase, iteration, and active task
-2. If implementing: read the iteration's `TASKS.md` and relevant design doc
-3. Load only the source files needed for the active task
+2. Verify current iteration in `STATUS.md` matches `git branch --show-current`
+3. If implementing: read the iteration's `TASKS.md` and relevant design doc
+4. Load only the source files needed for the active task
+5. If `ARCHITECTURE.md` datestamp is older than the most recently merged iteration, flag it and update before any design work
 
 **At session end:**
-1. Update `STATUS.md` — check off completed tasks, note any blockers
-2. Update memory — save key patterns established, where we left off, non-obvious decisions
+1. Update `STATUS.md` — check off completed tasks, note any blockers, confirm version/branch fields are current
+2. If MERGE phase complete: confirm `CHANGELOG.md` entry written; `PRD.md` features set to Shipped + version
+3. Update memory — save key patterns established, where we left off, non-obvious decisions
 
 ---
 
