@@ -21,7 +21,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Workflow
 
-This project uses a structured 4-phase iterative development workflow. Every iteration lives on its own git branch with requirement, design, and task artifacts.
+This project uses a structured iterative development workflow. Every iteration lives on its own git branch with requirement, design, and task artifacts.
 
 ### Key Docs (load only what the current task needs)
 
@@ -68,6 +68,7 @@ MERGE         →  CHANGELOG.md, merge to main, tag version, update STATUS.md
 
 **DESIGN** — Decide *how* to build before building.
 - Read the current `REQUIREMENTS.md`
+- If `REQUIREMENTS.md` lists any Known Unknowns: research each one (read docs, explore the codebase, search the web) before writing any design — do not assume or improvise
 - Read `docs/architecture/ARCHITECTURE.md` and relevant module files
 - Produce `docs/design/d-NNN-<slug>.md` using `templates/DESIGN.tpl.md`
 - Update `ARCHITECTURE.md` and relevant module files to reflect planned changes

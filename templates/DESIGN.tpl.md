@@ -7,6 +7,17 @@
 
 ---
 
+## 0. Research Findings
+
+> Complete this section if REQUIREMENTS listed Known Unknowns. Document what was found for each one.
+> Delete this section if there were no Known Unknowns.
+
+| Question | Finding | Source |
+|----------|---------|--------|
+| [Known unknown from REQUIREMENTS] | [What was discovered] | [Doc, file, or URL consulted] |
+
+---
+
 ## 1. Goals
 
 > Restate the implementation goals from the requirements in terms of what this design achieves.

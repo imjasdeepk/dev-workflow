@@ -91,6 +91,16 @@
 
 ---
 
+## Known Unknowns
+
+> Things we know we don't know — where assuming would be risky. Each entry must be researched before design begins.
+> Delete this section if there are none.
+
+- **[Question]**: [What needs to be understood and why it matters for the design]
+- **[Question]**: [What needs to be understood and why it matters for the design]
+
+---
+
 ## Open Questions
 
 > Unresolved decisions that will be answered before or during implementation.
